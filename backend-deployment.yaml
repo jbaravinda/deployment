@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quote-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quote-backend
+  template:
+    metadata:
+      labels:
+        app: quote-backend
+    spec:
+      containers:
+      - name: quote-backend
+        image: aravinda94/quote-backend:latest
+        ports:
+        - containerPort: 5000

@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: quote-backend
-        image: aravinda94/quote-backend:latest
+        image: aravindad94/quote-backend:latest
         ports:
         - containerPort: 5000

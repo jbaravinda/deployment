@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cicd-test
+  namespace: argocd  # Replace with the namespace where ArgoCD is installed
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jbaravinda/deployment.git  # Replace with your repository URL
+    targetRevision: master  # Specify the branch you want to track, e.g., 'main'
+    path: ./manifests  # Path to the folder containing your manifests (./ if it's in the root)
+  destination:
+    server: https://kubernetes.default.svc  # Kubernetes API server (default for the current cluster)
+    namespace: default  # Namespace where the application will be deployed
+  syncPolicy:
+    automated:
+      prune: true  # Automatically delete resources that are no longer in Git
+      selfHeal: true  # Automatically fix drift between desired and actual state
